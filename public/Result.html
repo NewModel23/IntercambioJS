@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head onload="resultado()">
+      <link rel="stylesheet" type="text/css" href="estilo.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bienvenido al intercambio 2019!!!!</title>
+
+    <style media="screen">
+      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
+      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
+      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
+      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
+      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
+      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
+      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
+      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
+      @media (max-width: 600px) {
+        body, #message { margin-top: 0; background: white; box-shadow: none; }
+        body { border-top: 16px solid #ffa100; }
+      }
+
+
+    </style>
+  </head>
+    
+  <body onload="resultado()">
+  
+    <script src="funciones.js"></script>
+    <script type="text/javascript">
+      
+      function resultado(){
+          query = window.location.search.substring(1);
+          
+          var qs = parse_query_string(query);
+          
+          console.log(query);
+          
+          //document.getElementById("write").innerHTML = query.replace("s=", "");
+          var resultado = equivalencias(query.replace("s=", ""));
+          document.getElementById("write").innerHTML = resultado
+          
+      }
+      
+    
+        
+        
+        function parse_query_string(query) {
+          var vars = query.split("&");
+          var query_string = {};
+          for (var i = 0; i < vars.length; i++) {
+            var pair = vars[i].split("=");
+            var key = decodeURIComponent(pair[0]);
+            var value = decodeURIComponent(pair[1]);
+            // If first entry with this name
+            if (typeof query_string[key] === "undefined") {
+              query_string[key] = decodeURIComponent(value);
+              // If second entry with this name
+            } else if (typeof query_string[key] === "string") {
+              var arr = [query_string[key], decodeURIComponent(value)];
+              query_string[key] = arr;
+              // If third or later entry with this name
+            } else {
+              query_string[key].push(decodeURIComponent(value));
+            }
+          }
+          return query_string;
+        }
+
+      
+    </script>
+    <div class="center">
+        <p><b><font size="4">Te toca regalarle a:</font></b></p>  
+
+
+        <p id="write"> </p>
+
+          <div>
+            <form action="http://google.com">
+                <input type="submit" value="Salir!" />
+            </form>
+         </div> 
+
+    </div>
+
+  </body>
+</html>
